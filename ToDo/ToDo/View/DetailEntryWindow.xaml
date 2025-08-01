@@ -1,0 +1,109 @@
+﻿<Window x:Class="ToDo.DetailEntryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDo"
+        mc:Ignorable="d"
+        Title="Detail Entry" Height="560" Width="500"
+        ResizeMode="NoResize">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Text="~/" Name="TbxPath" Margin="5" FontSize="30" Grid.Row="0"/>
+
+        <Grid Margin="0 5" Background="#DDD" Height="40" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <!-- Data -->
+            <CheckBox Grid.Column="0" Height="30" Width="30" IsChecked="False"/>
+            <!-- Colored Tags e.g. #FF4354 -->
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left">
+                <Rectangle Width="10" Height="20" Fill="{Binding TagColor1}" Margin="2"/>
+                <Rectangle Width="10" Height="20" Fill="{Binding TagColor2}" Margin="2"/>
+                <Rectangle Width="10" Height="20" Fill="{Binding TagColor3}" Margin="2"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Name}" Grid.Column="2" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Duration}" Grid.Column="3" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding StartDate}" Grid.Column="4" VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Margin="0, 0, 5, 0">
+                <Label FontSize="16" Content="Type"/>
+                <ComboBox FontSize="16" Name="CmbType" Width="240"/>
+
+                <Label FontSize="16" Content="Name"/>
+                <TextBox FontSize="16" Name="TbxName" Text="{Binding Name}" Width="240"/>
+
+                <Label FontSize="16" Content="Tags"/>
+                <StackPanel Orientation="Horizontal" Width="240">
+                    <TextBox FontSize="16" Name="TbxTagName1" Text="{Binding TagName1}" Width="230"/>
+                    <Rectangle Fill="{Binding TagColor1}" Width="10" Height="24"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="240" Margin="0, 5, 0, 0">
+                    <TextBox FontSize="16" Name="TbxTagName2" Text="{Binding TagName2}" Width="230"/>
+                    <Rectangle Fill="{Binding TagColor2}" Width="10" Height="24"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="240" Margin="0, 5, 0, 0">
+                    <TextBox FontSize="16" Name="TbxTagName3" Text="{Binding TagName3}" Width="230"/>
+                    <Rectangle Fill="{Binding TagColor3}" Width="10" Height="24"/>
+                </StackPanel>
+
+                <!--CalendarEntry Start-->
+                <Label FontSize="16" Name="LblCalendarStartDate" Content="Start Date" Visibility="Collapsed"/>
+                <DatePicker FontSize="16" Name="DpkCalendarStartDate" SelectedDate="{Binding StartDate}" Width="240" Visibility="Collapsed"/>
+
+                <Label FontSize="16" Name="LblCalendarEndDate" Content="End Date" Visibility="Collapsed"/>
+                <DatePicker FontSize="16" Name="DpkCalendarEndDate" SelectedDate="{Binding EndDate}" Width="240" Visibility="Collapsed"/>
+                <!--CalendarEntry End-->
+                
+                <!--ToDoEntry Start-->
+                <Label FontSize="16" Name="LblToDoDuration" Content="Duration" Visibility="Visible"/>
+                <TextBox FontSize="16" Name="TbxToDoDuration" Visibility="Visible"/>
+
+                <Label FontSize="16" Name="LblToDoDifficulty" Content="Difficulty" Visibility="Visible"/>
+                <ComboBox FontSize="16" Name="CmbToDoDifficulty" SelectedIndex="{Binding DifficultyIndex}" Visibility="Visible"/>
+                <!--ToDoEntry End-->          
+
+                <Button FontSize="16" Name="BtnSave" Content="Save" Width="240" Height="30" Margin="0, 30, 0, 0"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Margin="5, 0, 0, 0">
+                <Label FontSize="16" Content="Description"/>
+                <RichTextBox FontSize="16" Name="TbxDescription" Width="240" Height="195.5"/>
+
+                <!--CalendarEntry Start-->
+                <Label FontSize="16" Name="LblCalendarStartTime" Content="Start Date" Visibility="Collapsed"/>
+                <TextBox FontSize="16" Name="TbxCalendarStartDate" Text="{Binding StartTime}" Width="240" Visibility="Collapsed"/>
+
+                <Label FontSize="16" Name="LblCalendarEndTime" Content="End Date" Visibility="Collapsed"/>
+                <TextBox FontSize="16" Name="TbxCalendarEndDate" Text="{Binding EndTime}" Width="240" Visibility="Collapsed"/>
+                <!--CalendarEntry End-->
+
+                <!--ToDoEntry Start-->
+                <Label FontSize="16" Name="LblToDoPriority" Content="Priority" Visibility="Visible"/>
+                <ComboBox FontSize="16" Name="CmbToDoPriority" SelectedIndex="{Binding PriorityIndex}" Visibility="Visible"/>
+
+                <Label FontSize="16" Name="LblToDoSubpriority" Content="Subpriority" Visibility="Visible"/>
+                <TextBox FontSize="16" Name="TbxToDoSubpriority" Visibility="Visible"/>
+                <!--ToDoEntry End-->
+
+                <Button FontSize="16" Name="BtnCancel" Content="Cancel" Width="240" Height="30" Margin="0, 30, 0, 0"/>
+            </StackPanel>
+
+
+        </StackPanel>
+    </Grid>
+</Window>
